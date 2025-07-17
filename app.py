@@ -17,3 +17,15 @@ if hist_button:  # al hacer clic en el botón
 
     # mostrar un gráfico Plotly interactivo
     st.plotly_chart(fig, use_container_width=True)
+
+build_histogram = st.checkbox('Construir un histograma')
+
+if build_histogram:  # si la casilla de verificación está seleccionada
+    st.write('Evolucion precio promedio segun condición del coche')
+
+    df_agrupado = car_data.groupby('condition').agg(
+        {'price': 'mean'}).reset_index()
+    fig_2 = px.bar(df_agrupado, x='condition', y='price',
+                   title='Precio promedio por condición del coche')
+
+    st.plotly_chart(fig_2, use_container_width=True)  # mostrar el gráfico
