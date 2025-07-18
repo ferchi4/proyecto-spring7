@@ -29,3 +29,18 @@ if build_histogram:  # si la casilla de verificación está seleccionada
                    title='Precio promedio por condición del coche')
 
     st.plotly_chart(fig_2, use_container_width=True)  # mostrar el gráfico
+
+if st.checkbox('Mostrar datos'):  # casilla de verificación para mostrar datos
+    st.write('Datos del conjunto de datos de coches usados')
+    st.dataframe(car_data)  # mostrar el DataFrame
+
+# agregamos graficos de dispersión
+if st.button('Mostrar gráfico de dispersión'):
+    st.write('Gráfico de dispersión')
+    fig_scatter = px.scatter(car_data, x='odometer', y='price',
+                             title='Gráfico de dispersión: Precio vs Odómetro')
+    st.plotly_chart(fig_scatter, use_container_width=True)
+
+if st.balloons():  # si se muestran globos
+    # mensaje de felicitación
+    st.write('Beinvenido!!!!.')
